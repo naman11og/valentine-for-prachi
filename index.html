@@ -1,0 +1,216 @@
+!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Prachi ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: black;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Intro Screen */
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,#ff4e50,#ff758c);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1000;
+    text-align: center;
+}
+
+#lockScreen {
+    display:none;
+    position: fixed;
+    width:100%;
+    height:100%;
+    background:black;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:999;
+}
+
+input {
+    padding:10px;
+    border-radius:20px;
+    border:none;
+    margin:10px;
+    text-align:center;
+}
+
+.container {
+    display:none;
+    text-align:center;
+    padding:20px;
+    background: linear-gradient(135deg,#ff4e50,#ff758c);
+    min-height:100vh;
+}
+
+.slideshow img {
+    width:90%;
+    max-width:400px;
+    border-radius:20px;
+    margin:10px 0;
+    box-shadow:0 0 30px rgba(255,255,255,0.5);
+    animation: fadeIn 2s ease-in-out;
+}
+
+button {
+    margin:10px;
+    padding:12px 20px;
+    border:none;
+    border-radius:25px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+.yes { background:white; color:#ff4e50; }
+.no { background:black; color:white; position:relative; }
+
+.love-letter {
+    display:none;
+    margin-top:20px;
+    animation: fadeIn 2s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from{opacity:0; transform:scale(0.8);}
+    to{opacity:1; transform:scale(1);}
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0%{transform:translateY(100vh); opacity:1;}
+    100%{transform:translateY(-10vh); opacity:0;}
+}
+
+/* Fireworks */
+.firework {
+    position: fixed;
+    font-size: 25px;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    from {transform:scale(0); opacity:1;}
+    to {transform:scale(3); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div id="intro">
+    <h1>Welcome My Love 🧿❤️</h1>
+    <button onclick="showLock()">Enter 💘</button>
+</div>
+
+<!-- PASSWORD -->
+<div id="lockScreen">
+    <h2>Enter Password ❤️</h2>
+    <input type="password" id="password" placeholder="Enter here">
+    <button onclick="checkPassword()">Unlock 💞</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container" id="mainContent">
+
+    <h2>Naman Singh loves Prachi Rai ❤️</h2>
+
+    <div class="slideshow">
+        <img id="slide" src="photo1.jpg">
+    </div>
+
+    <p>You are my forever and always 💕</p>
+
+    <button class="yes" onclick="proposal()">Yes, I Love You ❤️</button>
+    <button class="no" onmouseover="moveButton(this)">No 🙈</button>
+
+    <div class="love-letter" id="letter">
+        <h2>💌 My Love Letter 💌</h2>
+        <p>
+        HAPPY VALENTINE DAY MY LOVE🧿❤️<br><br>
+        THANK YOU FOR BEING MY BIGGEST SUPPORTER.<br>
+        I LOVE YOU THE MOST.<br>
+        I WILL IMPROVE I PROMISE.<br><br>
+        IT IS OUR FIRST VALENTINE DAY TOGETHER AND I HOPE WE CELEBRATE IT FOREVER 🤞♾️<br><br>
+        I LOVE YOU EVERY SECOND OF EVERYDAY NOT JUST VALENTINE DAY.<br><br>
+        I LOVE YOU MY BABY 🧿🥹💘🌍❤️♾️🫶🏻
+        </p>
+    </div>
+
+</div>
+
+<script>
+let slides = ["photo1.jpg","photo2.jpg"];
+let currentSlide = 0;
+
+setInterval(()=>{
+    currentSlide = (currentSlide+1)%slides.length;
+    document.getElementById("slide").src = slides[currentSlide];
+},3000);
+
+function showLock(){
+    document.getElementById("intro").style.display="none";
+    document.getElementById("lockScreen").style.display="flex";
+}
+
+function checkPassword(){
+    if(document.getElementById("password").value==="270209"){
+        document.getElementById("lockScreen").style.display="none";
+        document.getElementById("mainContent").style.display="block";
+    } else {
+        alert("Wrong Password 🙈");
+    }
+}
+
+function moveButton(btn){
+    btn.style.transform="translate("+ (Math.random()*200-100) +"px,"+ (Math.random()*200-100)+"px)";
+}
+
+function proposal(){
+    document.getElementById("letter").style.display="block";
+    createFireworks();
+}
+
+function createFireworks(){
+    for(let i=0;i<20;i++){
+        let fw=document.createElement("div");
+        fw.className="firework";
+        fw.innerHTML="🎆";
+        fw.style.left=Math.random()*100+"vw";
+        fw.style.top=Math.random()*100+"vh";
+        document.body.appendChild(fw);
+        setTimeout(()=>fw.remove(),1000);
+    }
+}
+
+setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.fontSize=(Math.random()*20+10)+"px";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),5000);
+},600);
+</script>
+
+</body>
+</html>
